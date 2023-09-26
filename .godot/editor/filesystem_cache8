@@ -1,0 +1,13 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1695694292
+icon.svg::CompressedTexture2D::4645004555820624692::1695494657::1695494664::1::::<><>::
+::res://Scenes/::1695694145
+bullet.tscn::PackedScene::150629692116040665::1695693677::0::1::::<><>::uid://bw8clv142ikxj::::res://Sprites/bullet.png<>res://Scripts/bullet.gd
+player.tscn::PackedScene::7891482491980424491::1695694145::0::1::::<><>::uid://b7gcstvlto2tc::::res://icon.svg<>uid://4gsxp8ln84ql::::res://Sprites/Mini_Uzi.png
+world.tscn::PackedScene::8352580977721387642::1695693677::0::1::::<><>::uid://dkoxtfu80nj8n::::res://Scenes/player.tscn
+::res://Scripts/::1695676295
+bullet.gd::GDScript::-1::1695676295::0::1::::<>CharacterBody2D<>::
+player.gd::GDScript::-1::1695675580::0::1::::<>CharacterBody2D<>::
+::res://Sprites/::1695674126
+bullet.png::CompressedTexture2D::3998841931841575887::1695673915::1695673916::1::::<><>::
+Mini_Uzi.png::CompressedTexture2D::2048997550504197783::1695673909::1695674126::1::::<><>::
