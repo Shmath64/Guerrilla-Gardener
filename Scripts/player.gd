@@ -11,8 +11,11 @@ var muzzle_global_position : Vector2
 var gun_on_left_side : bool
 var max_ammo = 20
 var ammo_left : int
-var fire_time = 0.1 #Seconds
+var fire_time : float = 0.1 #Seconds
 var fire_time_left : float = 0 #Time until the next round can be fired
+var reloading = false
+var reload_time : float = 2
+var reload_time_left : float = 0
 
 func _ready():
 	$Camera2D.position_smoothing_speed = camera_smooth_speed
@@ -40,14 +43,23 @@ func fire():
 		new_bullet.rotation = direction_facing - randf() / current_accuracy
 	new_bullet.speed = muzzle_speed
 	get_parent().add_child(new_bullet)
+	update_ammo_count_label()
 
 func pull_trigger(): #What happens when trigger pulled (check if firing is possible)
-	if ammo_left > 0 and fire_time_left <=0:
-		fire()
+	if ammo_left <= 0: return #Maybe add a 'click' sound effect here
+	if fire_time_left > 0: return
+	if reloading: return
+	fire()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	fire_time_left = max(fire_time_left-delta, 0)
+	fire_time_left = max(fire_time_left-delta, 0) #Decrease fire_time_left and reload_time_left to zero
+	reload_time_left = max(reload_time_left-delta, 0)
+	$ReloadingLabel.visible = reloading
+	if reload_time_left <= 0 and reloading:
+		reloading = false
+		ammo_left = max_ammo
+		update_ammo_count_label()
 	$Camera2D.position = get_local_mouse_position() / 4
 	point_gun()
 	get_movement_input()
@@ -55,4 +67,12 @@ func _process(delta):
 	move_and_slide()
 	if Input.is_action_pressed("fire_primary"):
 		pull_trigger()
+	if Input.is_action_just_pressed("reload"):
+		reload()
+		
+func reload():
+	reloading = true
+	reload_time_left = reload_time 
 
+func update_ammo_count_label():
+	$AmmoCountLabel.text = "{0}/{1}".format([str(ammo_left), str(max_ammo)])

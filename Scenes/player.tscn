@@ -1,14 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkoxtfu80nj8n"]
+[gd_scene load_steps=7 format=3 uid="uid://dkoxtfu80nj8n"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_44ge8"]
 [ext_resource type="Texture2D" uid="uid://4gsxp8ln84ql" path="res://Sprites/Mini_Uzi.png" id="2_6kfr7"]
 [ext_resource type="Texture2D" uid="uid://cklcibaoepkxf" path="res://Sprites/Gardener.png" id="2_71brf"]
+[ext_resource type="FontFile" uid="uid://dpjmrgwufslmx" path="res://Imported Assets/PixelEmulator-xq08.ttf" id="4_056dc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p38sm"]
 size = Vector2(58, 89)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ect3w"]
+font_size = 29
+outline_size = 5
+outline_color = Color(0, 0, 0, 0.470588)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_44ge8")
+speed = 200
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -37,3 +44,34 @@ shape = SubResource("RectangleShape2D_p38sm")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
+
+[node name="AmmoCountLabel" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 53.0
+offset_right = 72.0
+offset_bottom = 76.0
+theme_override_fonts/font = ExtResource("4_056dc")
+text = "20/20"
+label_settings = SubResource("LabelSettings_ect3w")
+
+[node name="PressRLabel" type="Label" parent="."]
+visible = false
+offset_left = -196.0
+offset_top = -115.0
+offset_right = 196.0
+offset_bottom = -77.0
+theme_override_fonts/font = ExtResource("4_056dc")
+text = "press 'r' to reload"
+label_settings = SubResource("LabelSettings_ect3w")
+horizontal_alignment = 1
+
+[node name="ReloadingLabel" type="Label" parent="."]
+visible = false
+offset_left = -196.0
+offset_top = -115.0
+offset_right = 196.0
+offset_bottom = -77.0
+theme_override_fonts/font = ExtResource("4_056dc")
+text = "Reloading..."
+label_settings = SubResource("LabelSettings_ect3w")
+horizontal_alignment = 1
