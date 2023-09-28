@@ -9,6 +9,7 @@ var current_accuracy = 10
 var muzzle_speed = 1600
 var muzzle_global_position : Vector2
 var gun_on_left_side : bool
+#Gun stuff:
 var max_ammo = 20
 var ammo_left : int
 var fire_time : float = 0.1 #Seconds
@@ -16,6 +17,12 @@ var fire_time_left : float = 0 #Time until the next round can be fired
 var reloading = false
 var reload_time : float = 2
 var reload_time_left : float = 0
+
+var sprint_multiplier = 6
+var sprint_time = 2
+var sprint_time_left : float = 0 
+var sprinting = false
+var sprint_direction = Vector2.ZERO
 
 func _ready():
 	$Camera2D.position_smoothing_speed = camera_smooth_speed
@@ -29,8 +36,17 @@ func point_gun():
 	$PlayerSprite.flip_h = !gun_on_left_side
 	
 func get_movement_input():
-	move_input.x = Input.get_axis("ui_left", "ui_right")
+	move_input.x = Input.get_axis("ui_left", "ui_right") #Each return a value from -1 to 1
 	move_input.y = Input.get_axis("ui_up", "ui_down")
+	if move_input.length() > 1:  move_input = move_input.normalized() #makes it a unit vector (the if is in case we use analog inputs)
+	if Input.is_action_just_pressed("sprint") and move_input != Vector2.ZERO:
+		sprint_direction = move_input.length()
+		if sprint_time_left <= 0:
+			sprinting = true
+	if sprinting:
+		set_velocity(sprint_direction*sprint_multiplier*speed)
+	else:
+		set_velocity(move_input*speed)
 	
 func fire():
 	ammo_left -= 1
@@ -61,10 +77,9 @@ func _process(delta):
 		ammo_left = max_ammo
 		update_ammo_count_label()
 	$Camera2D.position = get_local_mouse_position() / 4
-	point_gun()
-	get_movement_input()
-	set_velocity(move_input*speed)
-	move_and_slide()
+	point_gun() #towards mouse
+	get_movement_input() #also sets velocity
+	move_and_slide() #Inherited from KinematicBody2D
 	if Input.is_action_pressed("fire_primary"):
 		pull_trigger()
 	if Input.is_action_just_pressed("reload"):

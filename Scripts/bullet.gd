@@ -10,4 +10,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	move_and_collide(velocity*delta)
+	var collision = move_and_collide(velocity*delta)
+	if collision:
+		if collision.get_collider().has_method("hit"):
+			collision.get_collider().call("hit")
+		explode()
+			
+func explode():
+	queue_free()

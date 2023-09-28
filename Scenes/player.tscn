@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkoxtfu80nj8n"]
+[gd_scene load_steps=10 format=3 uid="uid://dkoxtfu80nj8n"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_44ge8"]
 [ext_resource type="Texture2D" uid="uid://4gsxp8ln84ql" path="res://Sprites/Mini_Uzi.png" id="2_6kfr7"]
@@ -12,6 +12,17 @@ size = Vector2(58, 89)
 font_size = 29
 outline_size = 5
 outline_color = Color(0, 0, 0, 0.470588)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3l53i"]
+bg_color = Color(0.254902, 0.254902, 0.254902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhw52"]
+bg_color = Color(0.360784, 0.686275, 0.380392, 1)
+
+[sub_resource type="Theme" id="Theme_v8x08"]
+/colors/Green = Color(0, 1, 0, 1)
+ProgressBar/styles/background = SubResource("StyleBoxFlat_3l53i")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_rhw52")
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_44ge8")
@@ -75,3 +86,15 @@ theme_override_fonts/font = ExtResource("4_056dc")
 text = "Reloading..."
 label_settings = SubResource("LabelSettings_ect3w")
 horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -73.0
+offset_top = -17.0
+offset_right = -29.0
+offset_bottom = -8.0
+rotation = -1.57079
+theme = SubResource("Theme_v8x08")
+value = 25.0
+show_percentage = false
+
+[node name="SprintTimer" type="Timer" parent="."]
