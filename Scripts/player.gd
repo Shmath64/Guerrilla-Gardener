@@ -72,7 +72,9 @@ func fire():
 	update_ammo_count_label()
 
 func pull_trigger(): #What happens when trigger pulled (check if firing is possible)
-	if ammo_left <= 0: return #Maybe add a 'click' sound effect here
+	if ammo_left <= 0: 
+		if !reloading: $PressRLabel.visible = true
+		return #Maybe add a 'click' sound effect here
 	if fire_time_left > 0: return
 	if reloading: return
 	fire()
@@ -100,6 +102,7 @@ func _process(delta):
 func reload():
 	reloading = true
 	reload_time_left = reload_time 
+	$PressRLabel.visible = false
 
 func update_ammo_count_label():
 	$AmmoCountLabel.text = "{0}/{1}".format([str(ammo_left), str(max_ammo)])

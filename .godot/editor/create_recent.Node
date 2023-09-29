@@ -1,11 +1,11 @@
+CollisionShape2D
+StaticBody2D
+Node2D
 Timer
 AudioStreamPlayer
 Polygon2D
 ProgressBar
-StaticBody2D
 Sprite2D
-CollisionShape2D
-Node2D
 TileMap
 Label
 ReferenceRect
