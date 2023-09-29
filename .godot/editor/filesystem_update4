@@ -6,3 +6,4 @@ res://Scenes/enemy.tscn
 res://Scripts/enemy.gd
 res://Scripts/player.gd
 res://Scripts/bullet.gd
+res://Scripts/Garden.gd

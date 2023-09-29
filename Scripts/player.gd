@@ -25,6 +25,7 @@ var sprinting = false
 var sprint_direction = Vector2.ZERO
 var sprint_cooldown = 1.5
 var sprint_cooldown_left : float = 0
+var health = 100
 
 func _ready():
 	$Camera2D.position_smoothing_speed = camera_smooth_speed
@@ -112,4 +113,6 @@ func _on_sprint_timer_timeout():
 	sprinting = false
 	
 func touch_zombie():
-	print("I GOT HURT BY ZOMBIE")
+	health -= 15
+	if health <= 0:
+		print("GAME OVER")
