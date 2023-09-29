@@ -4,6 +4,8 @@ var max_health = 100
 var speed = 200
 var stunned = false
 var player : Object
+var targeting_player = false
+var target_player_distance = 1500
 
 func _ready():
 	player = get_parent().get_node("Player")
@@ -12,7 +14,8 @@ func _process(_delta):
 	#position += (Player.position - position) / 50
 	#look_at(Player.position)
 	if !stunned:
-		set_velocity(Vector2(speed, 0).rotated(get_angle_to(player.position)))
+		if targeting_player: set_velocity(Vector2(speed, 0).rotated(get_angle_to(player.position)))
+		else: set_velocity(Vector2(speed, 0).rotated(get_angle_to(Vector2.ZERO))) #Garden is at 0,0
 		move_and_slide()
 		var collision = get_last_slide_collision()
 		if collision:
@@ -21,6 +24,9 @@ func _process(_delta):
 				stunned = true
 				print("Stunned")
 				$StunTimer.start()
+	$Sprite2D.flip_h = velocity.x > 0
+	if player.position.distance_to(position) <= target_player_distance:
+		targeting_player = true
 	
 	
 func hit(damage : float):
