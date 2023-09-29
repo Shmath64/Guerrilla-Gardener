@@ -35,3 +35,4 @@ wait_time = 0.05
 wait_time = 0.5
 
 [connection signal="timeout" from="FlashColorTimer" to="." method="_on_flash_color_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
