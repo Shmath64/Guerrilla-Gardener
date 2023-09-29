@@ -1,8 +1,8 @@
 extends StaticBody2D
 
 
-func hit():
-	print("yeowch")
+func hit(damage : float):
+	print("target hit for " + str(damage) + " damage")
 	$Sprite2D.modulate = Color(1,0,0)
 	$FlashColorTimer.start()
 

@@ -1,18 +1,21 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1695949327
+::res://::1696008051
 icon.svg::CompressedTexture2D::4645004555820624692::1695494657::1695494664::1::::<><>::
 ::res://Clips/::1695849418
 ::res://Imported Assets/::1695823859
 PixelEmulator-xq08.ttf::FontFile::8231433417887816507::1695823814::1695823859::1::::<><>::
-::res://Scenes/::1695950075
-bullet.tscn::PackedScene::150629692116040665::1695950075::0::1::::<><>::uid://bw8clv142ikxj::::res://Sprites/bullet.png<>res://Scripts/bullet.gd
-player.tscn::PackedScene::7891482491980424491::1695950075::0::1::::<><>::res://Scripts/player.gd<>uid://4gsxp8ln84ql::::res://Sprites/Mini_Uzi.png<>uid://cklcibaoepkxf::::res://Sprites/Gardener.png<>uid://dpjmrgwufslmx::::res://Imported Assets/PixelEmulator-xq08.ttf
-Target.gd::GDScript::-1::1695849291::0::1::::<>StaticBody2D<>::
-Target.tscn::PackedScene::4613406331369330476::1695950125::0::1::::<><>::res://Scenes/Target.gd<>uid://b7gcstvlto2tc::::res://icon.svg
-world.tscn::PackedScene::8352580977721387642::1695950075::0::1::::<><>::uid://dkoxtfu80nj8n::::res://Scenes/player.tscn<>uid://b7gcstvlto2tc::::res://icon.svg<>uid://b6y1emi03hyjc::::res://Scenes/Target.tscn
-::res://Scripts/::1695950073
-bullet.gd::GDScript::-1::1695848044::0::1::::<>CharacterBody2D<>::
-player.gd::GDScript::-1::1695950073::0::1::::<>CharacterBody2D<>::
+::res://Scenes/::1696008051
+bullet.tscn::PackedScene::150629692116040665::1696007955::0::1::::<><>::uid://bw8clv142ikxj::::res://Sprites/bullet.png<>res://Scripts/bullet.gd
+enemy.tscn::PackedScene::6671056287788272167::1696008051::0::1::::<><>::res://Scripts/enemy.gd<>uid://b7gcstvlto2tc::::res://icon.svg
+player.tscn::PackedScene::7891482491980424491::1696007955::0::1::::<><>::res://Scripts/player.gd<>uid://4gsxp8ln84ql::::res://Sprites/Mini_Uzi.png<>uid://cklcibaoepkxf::::res://Sprites/Gardener.png<>uid://dpjmrgwufslmx::::res://Imported Assets/PixelEmulator-xq08.ttf
+Target.tscn::PackedScene::1869364602090899450::1696007962::0::1::::<><>::uid://b7gcstvlto2tc::::res://icon.svg<>res://Scripts/Target.gd
+world.gd::GDScript::-1::1696008049::0::1::::<>Node2D<>::
+world.tscn::PackedScene::8352580977721387642::1696007955::0::1::::<><>::uid://dkoxtfu80nj8n::::res://Scenes/player.tscn<>uid://b7gcstvlto2tc::::res://icon.svg<>uid://c2brk7x4hjnn8::::res://Scenes/enemy.tscn<>uid://1vsfreqshnha::::res://Scenes/Target.tscn
+::res://Scripts/::1696008051
+bullet.gd::GDScript::-1::1696007923::0::1::::<>CharacterBody2D<>::
+enemy.gd::GDScript::-1::1696007696::0::1::::<>PhysicsBody2D<>::
+player.gd::GDScript::-1::1695950719::0::1::::<>CharacterBody2D<>::
+Target.gd::GDScript::-1::1696007962::0::1::::<>StaticBody2D<>::
 ::res://Sprites/::1695734922
 bullet.png::CompressedTexture2D::3998841931841575887::1695673915::1695673916::1::::<><>::
 Gardener.png::CompressedTexture2D::5497573732563348915::1695734920::1695734922::1::::<><>::
