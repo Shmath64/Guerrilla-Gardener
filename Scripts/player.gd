@@ -106,3 +106,6 @@ func update_ammo_count_label():
 
 func _on_sprint_timer_timeout():
 	sprinting = false
+	
+func touch_zombie():
+	print("I GOT HURT BY ZOMBIE")

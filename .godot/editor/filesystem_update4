@@ -1,9 +1,8 @@
-res://Scenes/enemy.tscn
-res://Scenes/enemy.gd
 res://Scenes/world.tscn
-res://Scenes/player.tscn
-res://Scenes/Target.tscn
-res://Scenes/bullet.tscn
-res://Scripts/bullet.gd
-res://Scripts/Target.gd
 res://Scripts/world.gd
+res://Scenes/player.tscn
+res://Scenes/bullet.tscn
+res://Scenes/enemy.tscn
+res://Scripts/enemy.gd
+res://Scripts/player.gd
+res://Scripts/bullet.gd

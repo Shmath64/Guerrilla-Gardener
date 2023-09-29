@@ -33,11 +33,10 @@ sources/0 = SubResource("TileSetAtlasSource_sllyi")
 script = ExtResource("1_pogo0")
 
 [node name="Player" parent="." instance=ExtResource("1_a7yib")]
-position = Vector2(-60, -127)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_o2smf")
 format = 2
 
 [node name="Target" parent="." instance=ExtResource("3_sab2r")]
-position = Vector2(-322, -51)
+position = Vector2(-247, -81)
