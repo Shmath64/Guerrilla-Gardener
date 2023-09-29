@@ -9,8 +9,6 @@ func _ready():
 	player = get_parent().get_node("Player")
 
 func _process(_delta):
-	
-	
 	#position += (Player.position - position) / 50
 	#look_at(Player.position)
 	if !stunned:

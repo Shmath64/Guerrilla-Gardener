@@ -18,8 +18,8 @@ var reloading = false
 var reload_time : float = 2
 var reload_time_left : float = 0
 
-var sprint_multiplier = 4
-var sprint_time = 0.25
+var sprint_multiplier = 4.5
+var sprint_time = 0.35
 var sprint_time_left : float = 0 
 var sprinting = false
 var sprint_direction = Vector2.ZERO

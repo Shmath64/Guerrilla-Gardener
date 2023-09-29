@@ -22,26 +22,28 @@ func _process(delta):
 # 3   1
 #   2
 func spawn_wave(num : int):
-	for i in range(enemies_per_wave[num]):
-		var quadrant = randi_range(0,3)
-		var pos = Vector2.ZERO
-		match (quadrant):
-			0: #At least world length away, plus something from DISTANCE_FROM_GRASS to DISTANCE_FROM_GRASS*RANGE
-				pos = Vector2(randi_range(-WORLD_LENGTH, WORLD_LENGTH), -randi_range(DISTANCE_FROM_GRASS, RANGE*DISTANCE_FROM_GRASS) - WORLD_LENGTH)
-			1: 
-				pos = Vector2(randi_range(DISTANCE_FROM_GRASS, RANGE*DISTANCE_FROM_GRASS) + WORLD_LENGTH, randi_range(-WORLD_LENGTH, WORLD_LENGTH))
-			2:
-				pos = Vector2(-randi_range(DISTANCE_FROM_GRASS, RANGE*DISTANCE_FROM_GRASS) - WORLD_LENGTH, randi_range(-WORLD_LENGTH, WORLD_LENGTH))
-			3: 
-				pos = Vector2(randi_range(-WORLD_LENGTH, WORLD_LENGTH), randi_range(DISTANCE_FROM_GRASS, RANGE*DISTANCE_FROM_GRASS) + WORLD_LENGTH)
-		spawn_enemy(pos)
+	enemies_left_to_spawn = enemies_per_wave[num]
+	spawn_enemy()
 
-func spawn_enemy(_position : Vector2):
+func spawn_enemy():
 	var new_enemy = enemy.instantiate()
-	new_enemy.position = _position
+	var quadrant = randi_range(0,3)
+	var pos : Vector2 
+	match (quadrant):
+		0: #At least world length away, plus something from DISTANCE_FROM_GRASS to DISTANCE_FROM_GRASS*RANGE
+			pos = Vector2(randi_range(-WORLD_LENGTH, WORLD_LENGTH), -randi_range(DISTANCE_FROM_GRASS, RANGE*DISTANCE_FROM_GRASS) - WORLD_LENGTH)
+		1: 
+			pos = Vector2(randi_range(DISTANCE_FROM_GRASS, RANGE*DISTANCE_FROM_GRASS) + WORLD_LENGTH, randi_range(-WORLD_LENGTH, WORLD_LENGTH))
+		2:
+			pos = Vector2(-randi_range(DISTANCE_FROM_GRASS, RANGE*DISTANCE_FROM_GRASS) - WORLD_LENGTH, randi_range(-WORLD_LENGTH, WORLD_LENGTH))
+		3: 
+			pos = Vector2(randi_range(-WORLD_LENGTH, WORLD_LENGTH), randi_range(DISTANCE_FROM_GRASS, RANGE*DISTANCE_FROM_GRASS) + WORLD_LENGTH)
+	new_enemy.position = pos
 	add_child(new_enemy)
-	
-	
-	
-	
+	enemies_left_to_spawn -= 1
+	print(enemies_left_to_spawn)
+	if enemies_left_to_spawn > 0:
+		$EnemySpawnTimer.start()
 
+func _on_enemy_spawn_timer_timeout():
+	spawn_enemy()
