@@ -18,15 +18,18 @@ var reloading = false
 var reload_time : float = 2
 var reload_time_left : float = 0
 
-var sprint_multiplier = 6
-var sprint_time = 2
+var sprint_multiplier = 4
+var sprint_time = 0.25
 var sprint_time_left : float = 0 
 var sprinting = false
 var sprint_direction = Vector2.ZERO
+var sprint_cooldown = 1.5
+var sprint_cooldown_left : float = 0
 
 func _ready():
 	$Camera2D.position_smoothing_speed = camera_smooth_speed
 	ammo_left = max_ammo
+	$SprintProgressBar.max_value = sprint_cooldown
 
 func point_gun(): 
 	direction_facing = get_angle_to(get_global_mouse_position())
@@ -38,15 +41,21 @@ func point_gun():
 func get_movement_input():
 	move_input.x = Input.get_axis("ui_left", "ui_right") #Each return a value from -1 to 1
 	move_input.y = Input.get_axis("ui_up", "ui_down")
-	if move_input.length() > 1:  move_input = move_input.normalized() #makes it a unit vector (the if is in case we use analog inputs)
-	if Input.is_action_just_pressed("sprint") and move_input != Vector2.ZERO:
-		sprint_direction = move_input.length()
+	if move_input.length() > 1:  move_input = move_input.normalized() #makes it a unit vector (the if is in case we use analog inputs and the move_input vector.length() < 1)
+	if Input.is_action_just_pressed("sprint") and move_input != Vector2.ZERO and sprint_cooldown_left <= 0:
+		sprint_direction = move_input.normalized()
 		if sprint_time_left <= 0:
 			sprinting = true
+			$SprintTimer.start(sprint_time)
+			sprint_cooldown_left = sprint_cooldown
 	if sprinting:
 		set_velocity(sprint_direction*sprint_multiplier*speed)
 	else:
 		set_velocity(move_input*speed)
+		
+	$SprintProgressBar.value = sprint_cooldown_left
+	$SprintProgressBar.visible = sprint_cooldown_left > 0
+		
 	
 func fire():
 	ammo_left -= 1
@@ -84,6 +93,8 @@ func _process(delta):
 		pull_trigger()
 	if Input.is_action_just_pressed("reload"):
 		reload()
+	
+	sprint_cooldown_left = max(sprint_cooldown_left - delta, 0)
 		
 func reload():
 	reloading = true
@@ -91,3 +102,7 @@ func reload():
 
 func update_ammo_count_label():
 	$AmmoCountLabel.text = "{0}/{1}".format([str(ammo_left), str(max_ammo)])
+
+
+func _on_sprint_timer_timeout():
+	sprinting = false
