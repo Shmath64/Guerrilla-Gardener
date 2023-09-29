@@ -2,10 +2,11 @@ extends Node2D
 
 var enemy = preload("res://Scenes/enemy.tscn")
 var enemies_per_wave = [15, 25, 50, 80, 100]
+var enemies_left_to_spawn : int = 0 #Will be set to enemies_per_wave[wave_num]
 var wave_num = 0
 var WORLD_LENGTH = 3000 #minimum distance from center to edge (stone)
-var DISTANCE_FROM_GRASS = 100 #minimum distance from grass zombies can spawn
-var RANGE = 2 # how spread out should the zombies be when spawning (as a multiplier)
+var DISTANCE_FROM_GRASS = 200 #minimum distance from grass zombies can spawn
+var RANGE = 6 # how spread out should the zombies be when spawning (as a multiplier for DISTANCE_FROM_GRASS)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

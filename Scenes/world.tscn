@@ -40,3 +40,5 @@ format = 2
 
 [node name="Target" parent="." instance=ExtResource("3_sab2r")]
 position = Vector2(-247, -81)
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]

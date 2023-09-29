@@ -1,4 +1,5 @@
 Timer
+AudioStreamPlayer
 Polygon2D
 ProgressBar
 StaticBody2D

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkoxtfu80nj8n"]
+[gd_scene load_steps=11 format=3 uid="uid://dkoxtfu80nj8n"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_44ge8"]
 [ext_resource type="Texture2D" uid="uid://4gsxp8ln84ql" path="res://Sprites/Mini_Uzi.png" id="2_6kfr7"]
 [ext_resource type="Texture2D" uid="uid://cklcibaoepkxf" path="res://Sprites/Gardener.png" id="2_71brf"]
 [ext_resource type="FontFile" uid="uid://dpjmrgwufslmx" path="res://Imported Assets/PixelEmulator-xq08.ttf" id="4_056dc"]
+[ext_resource type="AudioStream" uid="uid://dcapg73h3pqj7" path="res://Audio/gun_sfx.wav" id="5_upubt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p38sm"]
 size = Vector2(58, 89)
@@ -53,7 +54,7 @@ position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_p38sm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.2, 0.2)
 position_smoothing_enabled = true
 
 [node name="AmmoCountLabel" type="Label" parent="."]
@@ -98,5 +99,8 @@ value = 25.0
 show_percentage = false
 
 [node name="SprintTimer" type="Timer" parent="."]
+
+[node name="GunShotSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_upubt")
 
 [connection signal="timeout" from="SprintTimer" to="." method="_on_sprint_timer_timeout"]

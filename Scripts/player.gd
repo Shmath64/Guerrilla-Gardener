@@ -58,6 +58,7 @@ func get_movement_input():
 		
 	
 func fire():
+	$GunShotSound.play()
 	ammo_left -= 1
 	fire_time_left = fire_time
 	var new_bullet = bullet.instantiate()
